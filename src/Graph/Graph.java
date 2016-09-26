@@ -1,7 +1,6 @@
 package Graph;
 
 import java.util.*;
-
 import static java.lang.System.out;
 
 public class graph {
@@ -25,14 +24,14 @@ public class graph {
 
             this.graph.get(var5.v1).neighbours.put(this.graph.get(var5.v2), var5.dist);
         }
-
     }
 
     public void dijkstra(String var1) {
         if (this.graph.containsKey(var1)) {
             TreeSet<Vertex> var3 = new TreeSet<Vertex>();
 
-            for (Vertex var5 : this.graph.values()) {
+            for (Iterator<Vertex> iterator = this.graph.values().iterator(); iterator.hasNext(); ) {
+                Vertex var5 = iterator.next();
                 if (var5 == this.graph.get(var1)) {
                     var5.previous = this.graph.get(var1);
                     var5.dist = 0;
@@ -43,28 +42,25 @@ public class graph {
                 var3.add(var5);
             }
 
-            this.dijkstra(var3);
-        } else {
-            out.println("IMPOSSIBLE\n");
-        }
-    }
-
-    private void dijkstra(NavigableSet<Graph.graph.Vertex> var1) {
-        int var6;
-        while (!var1.isEmpty()) {
-            Graph.graph.Vertex var2 = var1.pollFirst();
-            if (var2.dist != 2147483647) {
-                for (Map.Entry<Vertex, Integer> var5 : var2.neighbours.entrySet()) {
-                    Vertex var3 = var5.getKey();
-                    var6 = var2.dist + var5.getValue();
-                    if (var6 < var3.dist) {
-                        var1.remove(var3);
-                        var3.dist = var6;
-                        var3.previous = var2;
-                        var1.add(var3);
+            int var6;
+            while (!var3.isEmpty()) {
+                Graph.graph.Vertex var2 = var3.pollFirst();
+                if (var2.dist != 2147483647) {
+                    for (Map.Entry<Vertex, Integer> var5 : var2.neighbours.entrySet()) {
+                        Vertex var4 = var5.getKey();
+                        var6 = var2.dist + var5.getValue();
+                        if (var6 < var4.dist) {
+                            var3.remove(var4);
+                            var4.dist = var6;
+                            var4.previous = var2;
+                            var3.add(var4);
+                        }
                     }
                 }
             }
+
+        } else {
+            out.println("IMPOSSIBLE\n");
         }
     }
 
