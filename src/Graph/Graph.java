@@ -12,26 +12,25 @@ public class graph {
         this.graph = new HashMap<String, Vertex>(var3);
 
         Graph.graph.Edge var5;
-        for (int i = 0; i < var3; ++i) {
-            var5 = var1[i];
+        for (Edge aVar1 : var1) {
+            var5 = aVar1;
             if (!this.graph.containsKey(var5.v1)) {
-                this.graph.put(var5.v1, new graph.Vertex(var5.v1));
+                this.graph.put(var5.v1, new Vertex(var5.v1));
             }
 
             if (!this.graph.containsKey(var5.v2)) {
-                this.graph.put(var5.v2, new graph.Vertex(var5.v2));
+                this.graph.put(var5.v2, new Vertex(var5.v2));
             }
 
             this.graph.get(var5.v1).neighbours.put(this.graph.get(var5.v2), var5.dist);
         }
     }
 
-    public void dijkstra(String var1) {
+    public final void dijkstra(String var1) {
         if (this.graph.containsKey(var1)) {
             TreeSet<Vertex> var3 = new TreeSet<Vertex>();
 
-            for (Iterator<Vertex> iterator = this.graph.values().iterator(); iterator.hasNext(); ) {
-                Vertex var5 = iterator.next();
+            for (Vertex var5 : this.graph.values()) {
                 if (var5 == this.graph.get(var1)) {
                     var5.previous = this.graph.get(var1);
                     var5.dist = 0;
@@ -64,7 +63,7 @@ public class graph {
         }
     }
 
-    public void printPath(String var1) {
+    public final void printPath(String var1) {
         if (this.graph.containsKey(var1)) {
             this.graph.get(var1).printPath();
         } else {
@@ -72,7 +71,7 @@ public class graph {
         }
     }
 
-    public static class Vertex implements Comparable<Graph.graph.Vertex> {
+    public final static class Vertex implements Comparable<Graph.graph.Vertex> {
         public final String name;
         public int dist = 2147483647;
         public Graph.graph.Vertex previous = null;
@@ -98,7 +97,7 @@ public class graph {
         }
     }
 
-    public static class Edge {
+    public final static class Edge {
         public final String v1;
         public final String v2;
         public final int dist;

@@ -4,14 +4,11 @@ import Graph.graph.Edge;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import static java.lang.System.out;
-
 public class Solution {
 
     public static final float blop = ((float) Math.PI) / 180.0f;
 
     public static void main(String[] args) {
-        long debut = System.currentTimeMillis();
         final Scanner scanner = new Scanner(System.in); // 136 bytes
         final String departureStop = scanner.nextLine().split("StopArea:")[1]; // 24 bytes
         final String arrivalStop = scanner.nextLine().split("StopArea:")[1]; // 24 bytes
@@ -30,7 +27,6 @@ public class Solution {
             var6.put(scanner2, scanner0);
         }
 
-
         scanner.nextInt();
         scanner.nextLine();
         final Edge[] var20 = new Edge[2405];  // 9640 bytes
@@ -41,6 +37,7 @@ public class Solution {
             scanner3 = var5.split(" ");
             String scanner4 = scanner3[0].split("StopArea:")[1];
             String scanner5 = scanner3[1].split("StopArea:")[1];
+            System.out.println(var6.get(scanner4)[4]);
             float scanner8 = distance((Float.parseFloat(var6.get(scanner4)[4])), Float.parseFloat((var6.get(scanner4))[3]), Float.parseFloat((var6.get(scanner5))[4]), Float.parseFloat((var6.get(scanner5))[3]));
             var20[index] = new Edge(scanner4, scanner5, (int) (scanner8 * 10000.0));
         }
@@ -48,8 +45,7 @@ public class Solution {
         final graph var22 = new graph(var20); // 16 bytes
         graph.ListeKeyStation = var6; // 48 bytes
         var22.dijkstra(departureStop);
-        var22.printPath(arrivalStop);
-        out.println(System.currentTimeMillis() - debut);
+      //  var22.printPath(arrivalStop);
     }
 
     public static float distance(float point1, float point2, float point3, float point4) {
