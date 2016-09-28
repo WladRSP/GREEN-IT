@@ -37,7 +37,6 @@ public class Solution {
             scanner3 = var5.split(" ");
             String scanner4 = scanner3[0].split("StopArea:")[1];
             String scanner5 = scanner3[1].split("StopArea:")[1];
-            System.out.println(var6.get(scanner4)[4]);
             float scanner8 = distance((Float.parseFloat(var6.get(scanner4)[4])), Float.parseFloat((var6.get(scanner4))[3]), Float.parseFloat((var6.get(scanner5))[4]), Float.parseFloat((var6.get(scanner5))[3]));
             var20[index] = new Edge(scanner4, scanner5, (int) (scanner8 * 10000.0));
         }
@@ -45,7 +44,7 @@ public class Solution {
         final graph var22 = new graph(var20); // 16 bytes
         graph.ListeKeyStation = var6; // 48 bytes
         var22.dijkstra(departureStop);
-      //  var22.printPath(arrivalStop);
+        var22.printPath(arrivalStop);
     }
 
     public static float distance(float point1, float point2, float point3, float point4) {
